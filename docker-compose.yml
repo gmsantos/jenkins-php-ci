@@ -1,0 +1,9 @@
+version: '2'
+services:
+  ci:
+    build: .
+    ports: 
+      - 8080:8080
+      - 50000:50000
+    volumes: 
+      - .:/var/jenkins_home
