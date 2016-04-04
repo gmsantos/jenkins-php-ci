@@ -12,6 +12,10 @@ RUN apt-get update && apt-get install -y \
     php5-mongo \
     php5-curl
 
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer && \
+    chmod a+x /usr/local/bin/composer
+
 COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 
 WORKDIR $JENKINS_HOME
