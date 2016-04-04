@@ -1,0 +1,14 @@
+{
+    "config": {
+        "vendor-dir": "./jenkins_files/vendor"
+    },
+    "require": {
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*",
+        "pdepend/pdepend": "*",
+        "phploc/phploc": "*",
+        "phpmd/phpmd": "*",
+        "theseer/phpdox": "*",
+        "sebastian/phpcpd": "*"
+    }
+}
