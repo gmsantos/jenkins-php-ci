@@ -6,24 +6,26 @@ RUN apt-get update && apt-get install -y \
     git \
     ant \
     php5-cli \
-    php5-xsl 
-    
-RUN cd /usr/local/bin/ && curl -sS https://getcomposer.org/installer | php && \
-    mv /usr/local/bin/composer.phar /usr/local/bin/composer && \
-    composer self-update 
-    
+    php5-xsl
+
+WORKDIR $JENKINS_HOME
+
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer && \
+    chmod a+x /usr/local/bin/composer
+
+RUN export PATH="$PATH:$JENKINS_HOME/vendor/bin"
+
 USER jenkins
 
-RUN composer global require \
-    phpunit/phpunit \
-    squizlabs/php_codesniffer \ 
-    pdepend/pdepend \
-    phploc/phploc \
-    phpmd/phpmd \
-    theseer/phpdox \ 
-    sebastian/phpcpd
-
-RUN export PATH=$PATH:~/.composer/vendor/bin
+RUN composer require \
+    "phpunit/phpunit=*" \
+    "squizlabs/php_codesniffer=*" \
+    "pdepend/pdepend=*" \
+    "phploc/phploc=*" \
+    "phpmd/phpmd=*" \
+    "theseer/phpdox=*" \
+    "sebastian/phpcpd=*"
 
 COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 

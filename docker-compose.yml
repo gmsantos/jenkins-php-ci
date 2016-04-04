@@ -1,9 +1,8 @@
-version: '2'
-services:
-  ci:
-    build: .
-    ports: 
+# version: '2'
+ci:
+    build: ./
+    ports:
       - "8080:8080"
       - "50000:50000"
-    volumes: 
-      - ./jenkins_files:/var/jenkins_home
+    volumes:
+        - ./jenkins_files:/var/jenkins_home
