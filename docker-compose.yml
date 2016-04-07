@@ -1,5 +1,6 @@
-# version: '2'
-ci:
+version: '2'
+services:
+  ci:
     privileged: true
     build: ./
     ports:
@@ -7,3 +8,4 @@ ci:
       - "50000:50000"
     volumes:
         - ./jenkins_files:/var/jenkins_home
+        - ./docker_files:/var/lib/docker/
